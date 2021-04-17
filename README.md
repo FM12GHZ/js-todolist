@@ -1,4 +1,6 @@
-
+<p align="middle" >
+  <img width="200px;" src="./src/images/check_list.png"/>
+</p>
 <h2 align="middle">JS 투두리스트 스텝1</h2>
 <p align="middle">자바스크립트로 구현 하는 투두리스트</p>
 <p align="middle">
