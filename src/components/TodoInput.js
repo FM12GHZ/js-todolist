@@ -1,8 +1,8 @@
-const ENTER_KEY = 13;
+import keyCodes from "../constant/keyCode.js"
 
 const TodoInput = ({$todoInput, onTodoInput}) => {
     $todoInput.addEventListener("keydown", (e) => {
-        if(e.keyCode == ENTER_KEY) {
+        if(e.keyCode == keyCodes.enter) {
             if(e.target.value.length > 0) {
                 onTodoInput(e.target.value);
                 e.target.value = ""

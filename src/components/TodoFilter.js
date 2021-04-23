@@ -6,7 +6,6 @@ const TodoFilter = ({$todoFilter, onFilter}) => {
             }
         })
         onFilter(e.target.className);
-        console.log(e.target.className);
         e.target.classList.add("selected");
     })
 }

@@ -1,8 +1,8 @@
-import TodoInput from "./components/TodoInput.js"
-import TodoList from "./components/TodoList.js"
-import TodoListRender from "./components/TodoListRender.js"
-import TodoCount from "./components/TodoCount.js"
-import TodoFilter from "./components/TodoFilter.js"
+import TodoInput from "./src/components/TodoInput.js"
+import TodoList from "./src/components/TodoList.js"
+import TodoListRender from "./src/components/TodoListRender.js"
+import TodoCount from "./src/components/TodoCount.js"
+import TodoFilter from "./src/components/TodoFilter.js"
 
 const $todoInput = document.querySelector("#new-todo-title");
 const $todoList = document.querySelector("#todo-list");
@@ -42,8 +42,13 @@ const App = (initialState, filterState) => {
             nextState.splice(index, 1);
             setState(nextState, currentFilterState);
         },
-        onEdit: () => {
-            console.log("dbclicked!")
+        onEdit: (changeValue, index) => {
+            const nextState = [...currentState];
+            nextState[index] = {
+                text: changeValue,
+                isCompleted: nextState[index].isCompleted
+            }
+            setState(nextState, currentFilterState)
         }
     });
 
