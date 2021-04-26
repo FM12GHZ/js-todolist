@@ -4,9 +4,9 @@ import TodoListRender from "./src/components/TodoListRender.js"
 import TodoCount from "./src/components/TodoCount.js"
 import TodoFilter from "./src/components/TodoFilter.js"
 
-const $todoInput = document.querySelector("#new-todo-title");
-const $todoList = document.querySelector("#todo-list");
-const $todoCount = document.querySelector(".todo-count");
+const $todoInput = document.getElementById("new-todo-title");
+const $todoList = document.getElementById("todo-list");
+const $todoCount = document.querySelector(".todo-count strong");
 const $todoFilter = document.querySelector(".filters");
 
 const App = (initialState, filterState) => {

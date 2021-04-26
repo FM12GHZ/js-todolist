@@ -1,15 +1,17 @@
 const TodoListRender = ({$todoList, currentState, currentFilterState}) => {
-    if(currentFilterState === "all") {
-        currentState = currentState
-    } else if(currentFilterState === "active") {
-        currentState = currentState.filter(todo => todo.isCompleted === false)
-    } else {
-        currentState = currentState.filter(todo => todo.isCompleted === true)
+    switch(currentFilterState) {
+        case "active":
+            currentState = currentState.filter(todo => !todo.isCompleted);
+            break;
+        case "completed":
+            currentState = currentState.filter(todo => todo.isCompleted);
+            break;
     }
+
     $todoList.innerHTML = currentState.map(
         (todo, index) => `<li data-index="${index}" class="${todo.isCompleted ? `completed` : `false`}">
                             <div class="view">
-                                <input class="toggle" type="checkbox" id="${index}" ${todo.isCompleted ? "checked" : "false"}>
+                                <input class="toggle" type="checkbox" id="${index}" ${todo.isCompleted && "checked"}>
                                 <label class="label">${todo.text}</label>
                                 <button class="destroy" id="${index}"></button>
                             </div>

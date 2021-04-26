@@ -20,9 +20,7 @@ const TodoList = ({$todoList, onToggle, onRemove, onEdit}) => {
     $todoList.addEventListener("keydown", (e) => {
         if(e.keyCode === keyCodes.escape) {
             $todoList.childNodes.forEach(i => {
-                if(i.classList.contains("editing")) {
-                    i.classList.remove("editing")
-                }
+                i.classList.remove("editing")
             })
         }
     })
