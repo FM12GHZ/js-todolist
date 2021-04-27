@@ -9,7 +9,7 @@ function App() {
 
   // 컴포넌트 생성
   const todoInput = new TodoInput(this.app);
-  const todoList = new TodoList(this.data, this.app);
+  const todoList = new TodoList(this.app, this.data);
   const todoCount = new TodoCount(this.app, this.data);
   const todoFilter = new TodoFilter(this.app, this.data);
 
@@ -34,6 +34,15 @@ function App() {
   this.deleteTodo = (deleteId) => {
     const cleanedData = this.data.filter((todo) => todo.id !== deleteId); // 개선하고 싶다..
     this.setState(cleanedData); // 삭제는 잘 되는데 왜 반영이 안될까? 렌더는 계속 돌아가는데 리스트가 멈춘다.
+  };
+
+  this.toggleTodo = (toggleId) => {
+    this.data.forEach((todo) => {
+      if (todo.id === toggleId) {
+        todo.completed = !todo.completed;
+      }
+    });
+    this.setState(this.data);
   };
 
   this.setState = (updatedData) => {

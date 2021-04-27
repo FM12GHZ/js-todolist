@@ -1,4 +1,4 @@
-function TodoList(data, app) {
+function TodoList(app, data) {
   const $todoList = document.querySelector(".todo-list");
 
   // 개선이 필요해 보인다. 삭제시 렌더가 작동 안함..
@@ -6,10 +6,10 @@ function TodoList(data, app) {
     $todoList.innerHTML = data
       .map((todo) => {
         return `
-        <li class="${todo.completed ? `completed` : ""} " id=${todo.id}>
+        <li class="${todo.completed ? `completed` : ``}" id=${todo.id}>
           <div class="view">
             <input class="toggle" type="checkbox" ${
-              todo.completed ? `checked` : ""
+              todo.completed ? `checked` : ``
             }/>
             <label class="label">${todo.text}</label>
             <button class="destroy"></button>
@@ -49,6 +49,14 @@ function TodoList(data, app) {
     }
   };
   $todoList.addEventListener("click", this.deleteTodo);
+
+  this.checkTodo = (e) => {
+    if (e.target.className === "toggle") {
+      const toggleId = Number(e.target.closest("li").id);
+      app.toggleTodo(toggleId);
+    }
+  };
+  $todoList.addEventListener("click", this.checkTodo); //다른 코드 참고해보기
 
   this.setState = (newData) => {
     this.data = newData;
