@@ -1,6 +1,7 @@
 function TodoList(data, app) {
   const $todoList = document.querySelector(".todo-list");
 
+  // 개선이 필요해 보인다. 삭제시 렌더가 작동 안함..
   this.render = () => {
     $todoList.innerHTML = data
       .map((todo) => {
@@ -40,6 +41,20 @@ function TodoList(data, app) {
     }
   };
   $todoList.addEventListener("keydown", this.editTodo);
-}
 
+  this.deleteTodo = (e) => {
+    const deleteId = Number(e.target.closest("li").id);
+    if (e.target.className === "destroy") {
+      app.deleteTodo(deleteId);
+    }
+  };
+  $todoList.addEventListener("click", this.deleteTodo);
+
+  this.setState = (newData) => {
+    this.data = newData;
+    this.render();
+  };
+
+  this.render();
+}
 export default TodoList;
