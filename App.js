@@ -13,14 +13,22 @@ function App() {
   const todoCount = new TodoCount(this.app, this.data);
   const todoFilter = new TodoFilter(this.app, this.data);
 
-  this.saveTodo = (newTodo) => {
+  this.newTodo = (newTodo) => {
     this.data.push({
       text: newTodo,
       id: Date.now(), // 숫자가 의미하는 바는?
       completed: false,
     });
     this.setState(this.data);
-    console.log(this.data);
+  };
+
+  this.changeTodo = (editedText, id) => {
+    this.data.forEach((data) => {
+      if (data.id === id) {
+        data.text = editedText;
+      }
+    });
+    this.setState(this.data);
   };
 
   this.setState = (updatedData) => {
@@ -29,7 +37,7 @@ function App() {
   };
 
   this.render = () => {
-    // todoList.setState(this.data);
+    todoList.setState(this.data);
   };
 }
 

@@ -3,7 +3,7 @@ function TodoInput(app) {
 
   this.addTodo = (e) => {
     const todoText = e.target.value;
-    app.saveTodo(todoText);
+    app.newTodo(todoText);
     e.target.value = "";
   };
   // this의 원리와 EL에서 this는 원래 뭐였지
