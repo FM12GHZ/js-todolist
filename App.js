@@ -11,7 +11,7 @@ function App() {
   const todoInput = new TodoInput(this.app);
   const todoList = new TodoList(this.app, this.data);
   const todoCount = new TodoCount(this.app, this.data);
-  const todoFilter = new TodoFilter(this.app, this.data);
+  const todoFilter = new TodoFilter(this.app);
 
   this.newTodo = (text) => {
     this.data.push({
@@ -43,6 +43,29 @@ function App() {
       }
     });
     this.setState(this.data);
+  };
+
+  // filter 메소드를 쓰면 원본이 수정된다.. 요소를 숨기는게 답인가?
+  this.filterTodo = (state) => {
+    const $list = document.querySelectorAll(".todo-list li");
+
+    $list.forEach((todo) => {
+      switch (state) {
+        case "all":
+          todo.style.display = "list-item";
+          break;
+        case "active":
+          todo.classList.contains("completed")
+            ? (todo.style.display = "none")
+            : (todo.style.display = "list-item");
+          break;
+        case "completed":
+          todo.classList.contains("completed")
+            ? (todo.style.display = "list-item")
+            : (todo.style.display = "none");
+          break;
+      }
+    });
   };
 
   this.setState = (updatedData) => {
