@@ -51,9 +51,6 @@ function App() {
 
     $list.forEach((todo) => {
       switch (state) {
-        case "all":
-          todo.style.display = "list-item";
-          break;
         case "active":
           todo.classList.contains("completed")
             ? (todo.style.display = "none")
@@ -64,19 +61,24 @@ function App() {
             ? (todo.style.display = "list-item")
             : (todo.style.display = "none");
           break;
+        default:
+          todo.style.display = "list-item";
       }
     });
+    this.setState(this.data); // 코드 구조 자체의 문제가 있다. setState 하면 style 속성 무용지물 된다. 하지만 없으면 count 갱신이 안된다.
   };
 
   this.setState = (updatedData) => {
     this.data = updatedData;
     this.render();
-    console.log("render!");
   };
 
   this.render = () => {
     todoList.setState(this.data);
+    todoCount.setState(this.data);
   };
 }
 
 export default App;
+
+// 커밋에 대한 고민.. A기능을 추가하다는 어떤 단어가 좋을까?
