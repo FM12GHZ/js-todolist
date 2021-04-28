@@ -4,7 +4,7 @@ import TodoCount from "./components/TodoCount.js";
 import TodoFilter from "./components/TodoFilter.js";
 
 function App() {
-  this.data = [];
+  this.data = JSON.parse(localStorage.getItem("todos")) || [];
   this.app = this; // 없애볼까..
 
   // 컴포넌트 생성
@@ -68,8 +68,13 @@ function App() {
     this.setState(this.data); // 코드 구조 자체의 문제가 있다. setState 하면 style 속성 무용지물 된다. 하지만 없으면 count 갱신이 안된다.
   };
 
+  this.saveLocalStorage = () => {
+    localStorage.setItem("todos", JSON.stringify(this.data));
+  };
+
   this.setState = (updatedData) => {
     this.data = updatedData;
+    this.saveLocalStorage();
     this.render();
   };
 
